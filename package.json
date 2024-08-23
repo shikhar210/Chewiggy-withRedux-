@@ -1,0 +1,27 @@
+{
+  "name": "res-app",
+  "version": "1.0.0",
+  "description": "this is a basic react resturant app",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shikhar210/res-app.git"
+  },
+  "author": "Shikhar Srivastava",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shikhar210/res-app/issues"
+  },
+  "homepage": "https://github.com/shikhar210/res-app#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
