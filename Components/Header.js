@@ -10,6 +10,9 @@ export const Header = () => {
                     src={logo}
                 />
             </div>
+            <div className="app-name">
+                <h1>Chewiggy</h1>
+            </div>
             <div className="nav-items">
                 <ul>
                     <li>Home</li>
