@@ -4,6 +4,7 @@
   "description": "this is a basic react resturant app",
   "main": "App.js",
   "scripts": {
+    "start": "parcel index.html",
     "test": "jest"
   },
   "repository": {
