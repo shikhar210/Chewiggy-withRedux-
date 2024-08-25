@@ -5,6 +5,8 @@
   "main": "App.js",
   "scripts": {
     "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "dev": "react-scripts start",
     "test": "jest"
   },
   "repository": {
