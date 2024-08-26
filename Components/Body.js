@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { ResturantCard } from "./ResturantCard"
+import { RestaurantCard } from "./RestaurantCard"
 import { Shimmer } from "./Shimmer";
+import { Link } from "react-router-dom";
 
 export const Body = () => {
-    const [listOfResturant, setListOfResturant] = useState([]);
-    const [filteredListOfResturant, setFilteredListOfResturant] = useState([]);
+    const [listOfRestaurant, setListOfRestaurant] = useState([]);
+    const [filteredListOfRestaurant, setFilteredListOfRestaurant] = useState([]);
     const [filterFlag, setFilterFlag] = useState(false);
     const [searchText, setSearchText] = useState("");
 
@@ -16,8 +17,8 @@ export const Body = () => {
         const response = await fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.61610&lng=73.72860&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const json = await response.json();
         const data = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-        setListOfResturant(data);
-        setFilteredListOfResturant(data);
+        setListOfRestaurant(data);
+        setFilteredListOfRestaurant(data);
     }
 
     useEffect(()=>{
@@ -34,19 +35,19 @@ export const Body = () => {
 
     const filterOnSearch = () => {
         if(searchText==="") {
-            setFilteredListOfResturant(listOfResturant);
+            setFilteredListOfRestaurant(listOfRestaurant);
         } else {
-            const filteredList = listOfResturant.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()));
-            setFilteredListOfResturant(filteredList);
+            const filteredList = listOfRestaurant.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()));
+            setFilteredListOfRestaurant(filteredList);
         }
     }
 
     const filterOnRatingButton = () => {
         if(!filterFlag) {
-            setFilteredListOfResturant(listOfResturant);
+            setFilteredListOfRestaurant(listOfRestaurant);
         } else {
-            const filteredList = listOfResturant.filter((res)=> res.info.avgRating>4);
-            setFilteredListOfResturant(filteredList);
+            const filteredList = listOfRestaurant.filter((res)=> res.info.avgRating>4);
+            setFilteredListOfRestaurant(filteredList);
         }
     }
 
@@ -55,7 +56,7 @@ export const Body = () => {
     }
 
     return (
-        filteredListOfResturant.length===0 ? <Shimmer/> : 
+        filteredListOfRestaurant.length===0 ? <Shimmer/> : 
         <div className="body">
             <div className="search">
                 <input placeholder="Search" onChange={handleSearch}/>
@@ -65,9 +66,17 @@ export const Body = () => {
                     onClick={handleFilterRatingButton}
                 >{filterFlag ? 'Show all' : 'Filter rating above 4'}</button>
             </div>
-            <div className="resturant-container">
-            {filteredListOfResturant.map(({ info }) => {
-                return <ResturantCard key={info.id} name ={info.name} cuisines={info.cuisines} avgRating={info.avgRating} costForTwo={info.costForTwo} imgId={info.cloudinaryImageId}/>
+            <div className="restaurant-container">
+            {filteredListOfRestaurant.map(({ info }) => {
+                return <Link key={info.id} to ={"/restaurants/"+info.id}>
+                            <RestaurantCard
+                                name ={info.name}
+                                cuisines={info.cuisines}
+                                avgRating={info.avgRating}
+                                costForTwo={info.costForTwo}
+                                imgId={info.cloudinaryImageId}
+                            />
+                        </Link>
             })}
             </div>
         </div>

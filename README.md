@@ -1,4 +1,4 @@
-basic resturant app
+basic restaurant app
 
 
 Design
@@ -7,8 +7,8 @@ Design
     -Nav Items
 - Body
     -Search
-    -ResturantContainer
-    -ResturantCard
+    -RestaurantContainer
+    -RestaurantCard
 - Footer
     -Copyright
     -Link

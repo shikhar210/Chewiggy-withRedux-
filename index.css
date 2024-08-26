@@ -21,14 +21,14 @@
     color: rgb(235, 27, 62);
     font-style: oblique;
 }
-.resturant-card {
+.restaurant-card {
     padding: 10px;
     margin: 10px;
     width: 200px;
     background-color: navajowhite;
 }
 
-.resturant-card:hover {
+.restaurant-card:hover {
     cursor: pointer;
     border: 1px solid black;
 }
@@ -37,17 +37,17 @@
     padding: 10px;
 }
 
-.resturant-photo {
+.restaurant-photo {
     height: 200px;
     width: 200px;
 }
 
-h3 {
+/* h3 {
     margin-top: 0px;
     color: red;
-}
+} */
 
-.resturant-container {
+.restaurant-container {
     display: flex;
     flex-wrap: wrap;
 }
