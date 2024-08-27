@@ -1,35 +1,10 @@
-import { useEffect, useState } from "react";
 import { Shimmer } from "./Shimmer";
 import { useParams } from "react-router-dom";
+import useRestaurantMenuData from "../Utils/useRestaurantMenuData";
 
 export const RestaurantMenu = () => {
-
-    const [restaurantMenuData, setRestaurantMenuData] = useState([]);
-    const [menuData, setMenuData] = useState([]);
     const {resId} = useParams();
-
-    useEffect(()=>{
-        fetchMenuData();
-    },[]);
-
-    const fetchMenuData = async () => {
-        let response, json;
-        try{
-            response = await fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.61610&lng=73.72860&restaurantId=" + resId);
-        }
-        catch(error) {
-            json = null;
-        }
-        if(response){
-            
-        json = await response.json();
-        console.log(json.data.cards[2]?.card?.card?.info);
-        setRestaurantMenuData(json?.data);
-        setMenuData(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards);
-        }
-    };
-
-    // const { name, cloudinaryImageId, cuisines, costForTwoMessage } = restaurantMenuData?.cards[2]?.card?.card?.info;
+    const [restaurantMenuData, menuData] = useRestaurantMenuData(resId);
 
     return(
         restaurantMenuData.length===0 ? <Shimmer/> : (

@@ -64,3 +64,18 @@
     height: 350px;
     background-color: rgb(189, 185, 185);
 }
+
+.online {
+    background-color: green;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.offline {
+    background-color: red;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}

@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom";
 import logo from "../Logo/logo.png"
+import useOnlineStatus from "../Utils/useOnlineStatus";
+import { useState } from "react";
 
 export const Header = () => {
+    const onlineStatus = useOnlineStatus();
+    const [ loginBtnName, setLoginBtnName ] = useState("Log in");
+
+    const handleLoginClick = () => {
+        if(loginBtnName === "Log in") {
+            setLoginBtnName("Log out");
+        } else
+            setLoginBtnName("Log in");
+    }
     return(
         <div className="header">
             <div className="logo-container">
@@ -17,6 +28,9 @@ export const Header = () => {
             <div className="nav-items">
                 <ul>
                     <li>
+                        <span className={onlineStatus ? "online" : "offline"}></span>
+                    </li>
+                    <li>
                         <Link to="/">Home</Link>
                     </li>
                     <li>
@@ -25,7 +39,12 @@ export const Header = () => {
                     <li>
                         <Link to="/contact">Contact Us</Link>
                     </li>
-                    <li>Cart</li>
+                    <li>
+                        <Link to="/cart">Cart</Link>
+                    </li>
+                    <li>
+                        <button onClick={handleLoginClick}>{loginBtnName}</button>
+                    </li>
                 </ul>
             </div>
         </div>
