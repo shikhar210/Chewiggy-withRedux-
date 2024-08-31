@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RestaurantCard } from "./RestaurantCard"
 import { Shimmer } from "./Shimmer";
 import { Link } from "react-router-dom";
 import useRestaurantList from "../Utils/useRestaurantList";
 import useOnlineStatus from "../Utils/useOnlineStatus";
+import CartContext from "../Utils/CartContext";
 
 export const Body = () => {
     const onlineStatus = useOnlineStatus();
@@ -11,6 +12,11 @@ export const Body = () => {
     const [filteredListOfRestaurant, setFilteredListOfRestaurant] = useState([]);
     const [filterFlag, setFilterFlag] = useState(false);
     const [searchText, setSearchText] = useState("");
+
+    const { setCartItems } = useContext(CartContext);
+    useEffect(()=>{
+        setCartItems([]);
+    },[]);
 
     useEffect(()=>{
         setFilteredListOfRestaurant(listOfRestaurant);

@@ -1,10 +1,14 @@
 import { Shimmer } from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenuData from "../Utils/useRestaurantMenuData";
+import { useContext } from "react";
+import CartContext from "../Utils/CartContext";
 
 export const RestaurantMenu = () => {
     const {resId} = useParams();
     const [restaurantMenuData, menuData] = useRestaurantMenuData(resId);
+
+    const { listItem, setCartItems } = useContext(CartContext);
 
     return(
         restaurantMenuData.length===0 ? <Shimmer/> : (
@@ -16,7 +20,7 @@ export const RestaurantMenu = () => {
             <ul>
                 {menuData.map((menu)=>{
                     return(
-                        <li key={menu.card.info.id}>{menu.card.info.name}</li>
+                        <li key={menu.card.info.id}>{menu.card.info.name} <button onClick={()=> setCartItems([ ...listItem, menu.card.info.name])}>Add</button></li>
                     )
                 })}
             </ul>
