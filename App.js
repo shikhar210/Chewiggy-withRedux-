@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useContext, useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client"
 import { Header } from "./Components/Header";
 import { Body } from "./Components/Body";
@@ -8,20 +8,15 @@ import { ContactUs } from "./Components/ContactUs";
 import { Error } from "./Components/Error";
 import { RestaurantMenu } from "./Components/RestaurantMenu";
 import { Shimmer } from "./Components/Shimmer";
-import CartContext from "./Utils/CartContext";
 
 const Cart = lazy(()=> import("./Components/Cart"));
 
 const AppLayout = () => {
-    const cartListContext = useContext(CartContext);
-    const [cartItems, setCartItems] = useState(cartListContext.listItem);
     return(
-        <CartContext.Provider value ={{ listItem: cartItems, setCartItems}}>  
-            <div className="App-container">
-                <Header/>
-                <Outlet/>
-            </div>
-        </CartContext.Provider>
+        <div className="App-container">
+            <Header/>
+            <Outlet/>
+        </div>
     );
 };
 
