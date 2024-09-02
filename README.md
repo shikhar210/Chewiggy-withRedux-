@@ -14,3 +14,13 @@ Design
     -Link
     -Adress
     -Contact
+
+
+- Redux toolkit
+    - install @reduxjs/toolkit and react-redux
+    - build our store
+    - connect store to app
+    - slice (cart slice)
+    - dispatch
+    - selector
+    

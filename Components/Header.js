@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
 import logo from "../Logo/logo.png"
 import useOnlineStatus from "../Utils/useOnlineStatus";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setLoggedIn } from "../Redux/UserSlice";
 
 export const Header = () => {
     const onlineStatus = useOnlineStatus();
-    const [ loginBtnName, setLoginBtnName ] = useState("Log in");
+
+    const cartItems = useSelector((store)=> store.cart.items);
+    const user = useSelector(store=> store.user.userName);
+    const dispatch = useDispatch();
 
     const handleLoginClick = () => {
-        if(loginBtnName === "Log in") {
-            setLoginBtnName("Log out");
-        } else
-            setLoginBtnName("Log in");
+        dispatch(setLoggedIn(""))
     }
     return(
         <div className="header">
@@ -40,10 +41,13 @@ export const Header = () => {
                         <Link to="/contact">Contact Us</Link>
                     </li>
                     <li>
-                        <Link to="/cart">Cart</Link>
+                        <Link to="/cart">Cart {cartItems.length}</Link>
                     </li>
                     <li>
-                        <button onClick={handleLoginClick}>{loginBtnName}</button>
+                        {user}
+                    </li>
+                    <li>
+                        <button onClick={handleLoginClick}>Log Out</button>
                     </li>
                 </ul>
             </div>

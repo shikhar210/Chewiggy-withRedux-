@@ -1,10 +1,14 @@
 import { Shimmer } from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenuData from "../Utils/useRestaurantMenuData";
+import { useDispatch } from "react-redux";
+import { addItem } from "../Redux/CartSlice";
 
 export const RestaurantMenu = () => {
     const {resId} = useParams();
     const [restaurantMenuData, menuData] = useRestaurantMenuData(resId);
+
+    const dispatch = useDispatch();
 
     return(
         restaurantMenuData.length===0 ? <Shimmer/> : (
@@ -16,7 +20,7 @@ export const RestaurantMenu = () => {
             <ul>
                 {menuData.map((menu)=>{
                     return(
-                        <li key={menu.card.info.id}>{menu.card.info.name} <button onClick={()=> {}}>Add</button></li>
+                        <li key={menu.card.info.id}>{menu.card.info.name} <button onClick={()=> { dispatch(addItem(menu.card.info.name))}}>Add</button></li>
                     )
                 })}
             </ul>
