@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import logo from "../Logo/logo.png"
 import useOnlineStatus from "../Utils/useOnlineStatus";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoggedIn } from "../Redux/UserSlice";
+import { logoURL } from "../Utils/mockData";
 
 export const Header = () => {
     const onlineStatus = useOnlineStatus();
@@ -20,7 +20,7 @@ export const Header = () => {
                 <img
                     className="logo"
                     alt="image"
-                    src={logo}
+                    src={logoURL}
                 />
             </div>
             <div className="app-name">

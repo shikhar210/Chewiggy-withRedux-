@@ -1,13 +1,10 @@
-import UserClass from "./UserClass"
-
 export const ContactUs = () => {
     return(
         <>
             <h1>Contact Us</h1>
-            <UserClass
-                location={"Pune"}
-                email={"shikharsrivastava210@gmail.com"}
-            />
+            <div>Email: <input name="email" placeholder="Email"/></div>
+            <div>Feedback: <input name="feedback" placeholder="Feedback"/></div>
+            <div><button>Submit</button></div>
         </>
     )
 }
