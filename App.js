@@ -10,14 +10,16 @@ import { RestaurantMenu } from "./Components/RestaurantMenu";
 import { Shimmer } from "./Components/Shimmer";
 import { Provider } from "react-redux";
 import appStore from "./Redux/AppStore";
-import AppLayout from "./AppLayout";
 
 const Cart = lazy(()=> import("./Components/Cart"));
 
 const App = () => {
     return(
         <Provider store={appStore}>
-            <AppLayout/>
+            <div className="App-container">
+            <Header/>
+            <Outlet/>
+        </div>
         </Provider>
     );
 };
@@ -56,6 +58,5 @@ const appRouter = createBrowserRouter([
     },
 ]);
 
-// const heading = React.createElement("h1", {id: "heading"}, "Hello World!");
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={appRouter}/>);
